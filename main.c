@@ -13,6 +13,7 @@ int main()
 {
     int n=0;
     double x=1, y=1, sum=0, tot_x=0,tot_y=0,sum_xi=0, sum_yi=0, mean_x=0, mean_y=0, result=0;
+    double a=0, b=0; ///for regression analysis
     scanf("%lf%lf", &x, &y);
     while(x!=0) /// here 0,0 is the stop code. to terminate input loop input 0 0 
     {
@@ -35,7 +36,11 @@ int main()
     printf("mean x=%lf     y=%lf\n", mean_x, mean_y);
     result = (sum - n*mean_x*mean_y) / (sqrt(sum_xi-n*pow(mean_x,2))*sqrt(sum_yi-n*pow(mean_y,2)));
     
+    a = (tot_y*sum_xi - tot_x*sum) / (n*sum_xi - pow(tot_x,2));
+    b = (n*sum - tot_x*tot_y) / (n*sum_xi - pow(tot_x,2));
+    
     printf("\ncorrelation coefficient is %lf\n", result);
+    printf("regression equation: %lf + %lfx\n", a,b);
 
     return 0;
 }
